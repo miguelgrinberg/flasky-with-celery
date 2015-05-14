@@ -5,13 +5,15 @@ from flask.ext.moment import Moment
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.pagedown import PageDown
-from config import config
+from celery import Celery
+from config import config, Config
 
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
 db = SQLAlchemy()
 pagedown = PageDown()
+celery = Celery(__name__, broker=Config.CELERY_BROKER_URL)
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -29,6 +31,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     pagedown.init_app(app)
+    celery.conf.update(app.config)
 
     if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
         from flask.ext.sslify import SSLify
