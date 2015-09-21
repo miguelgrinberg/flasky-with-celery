@@ -3,7 +3,7 @@ Flasky with Celery
 
 This repository contains a version of the [Flasky](https://github.com/miguelgrinberg/flasky) application featured in my O'Reilly book [Flask Web Development](http://www.flaskbook.com) that demonstrates how to run Celery.
 
-The application is largely the same as in the book. The only change is that the sending of emails is handled by a Celery task instead of a background thread. You can look at the last commit to see exactly what changes were made.
+The application is largely the same as in the book. The only change is that the sending of emails is handled by a Celery task instead of a background thread. You can look at [this commit](https://github.com/miguelgrinberg/flasky-with-celery/commit/a5bcdc4380e2858d825cf9060213d08bfa07a73a) to see exactly what changes were made.
 
 Quick Setup
 -----------
