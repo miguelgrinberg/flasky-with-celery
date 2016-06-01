@@ -8,8 +8,8 @@ The application is largely the same as in the book. The only change is that the 
 Quick Setup
 -----------
 
-1. Clone this repository.
-2. Create a virtualenv and install the requirements 
+- Clone this repository.
+- Create a virtualenv and install the requirements 
 ```
 cd (repo)
 virtualenv venv
@@ -18,18 +18,18 @@ source bin/activate
 cd ..
 pip install -r requirements/dev.txt
 ```
-3. Run the migrations
+- Run the migrations
 ```
 python manage.py db upgrade
 ```
-4. Open a second terminal window and start a local Redis server (if you are on Linux or Mac, execute `run-redis.sh` to install and launch a private copy).
-5. Open a third terminal window. Set two environment variables `MAIL_USERNAME` and `MAIL_PASSWORD` to a valid Gmail account credentials (these will be used to send emails through Gmail's SMTP server). Then start a Celery worker. 
+- Open a second terminal window and start a local Redis server (if you are on Linux or Mac, execute `run-redis.sh` to install and launch a private copy).
+- Open a third terminal window. Set two environment variables `MAIL_USERNAME` and `MAIL_PASSWORD` to a valid Gmail account credentials (these will be used to send emails through Gmail's SMTP server). Then start a Celery worker. 
 ```
 export MAIL_USERNAME=user@gmail.com
 export MAIL_PASSWORD=password
 venv/bin/celery worker -A celery_worker.celery --loglevel=info
 ```
-6. Start Flasky on your first terminal window: `venv/bin/python manage.py runserver`.
-7. Go to `http://localhost:5000/` and register an account to see how the Celery background emails work!
+- Start Flasky on your first terminal window: `venv/bin/python manage.py runserver`.
+- Go to `http://localhost:5000/` and register an account to see how the Celery background emails work!
 
 For general details on how to integrate Celery with Flask, see my article [Using Celery with Flask](http://blog.miguelgrinberg.com/post/using-celery-with-flask).
