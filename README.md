@@ -10,7 +10,6 @@ Quick Setup
 
 1. Clone this repository.
 2. Create a virtualenv and install the requirements 
-
 ```
 cd (repo)
 virtualenv venv
@@ -30,7 +29,6 @@ export MAIL_USERNAME=user@gmail.com
 export MAIL_PASSWORD=password
 venv/bin/celery worker -A celery_worker.celery --loglevel=info
 ```
-
 6. Start Flasky on your first terminal window: `venv/bin/python manage.py runserver`.
 7. Go to `http://localhost:5000/` and register an account to see how the Celery background emails work!
 
