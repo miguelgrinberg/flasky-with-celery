@@ -13,7 +13,7 @@ mail = Mail()
 moment = Moment()
 db = SQLAlchemy()
 pagedown = PageDown()
-celery = Celery(__name__, broker=Config.CELERY_BROKER_URL)
+celery = Celery(__name__, broker=Config.CELERY_BROKER_URL, include=["app.tasks.add"])
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -32,6 +32,16 @@ def create_app(config_name):
     login_manager.init_app(app)
     pagedown.init_app(app)
     celery.conf.update(app.config)
+    celery.conf.beat_schedule = {
+        'add-every-60-seconds': {
+            'task': 'app.tasks.add.sum',
+            'schedule': 10.0,
+            'args': (16, 16)
+        },
+    }
+    celery.conf.result_backend = 'redis://localhost:6379/0'
+    celery.conf
+    celery.conf.timezone = 'UTC'
 
     if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
         from flask.ext.sslify import SSLify
