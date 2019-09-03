@@ -40,3 +40,7 @@ nosetests.xml
 
 # Virtual environment
 venv
+.venv/
+redis-stable/
+.idea/
+
